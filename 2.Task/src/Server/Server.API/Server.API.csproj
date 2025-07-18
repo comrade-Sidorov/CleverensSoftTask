@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Server.Domain\Server.Domain.csproj" />
+    <ProjectReference Include="..\Server.Service\Server.Service.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
