@@ -1,21 +1,24 @@
 using Server.Domain;
 using Server.Service;
 
-var count = new Count();
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<Count>();
 builder.Services.AddSingleton<IServerService, ServerService>();
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/add", (IServerService _serverService) =>
+app.MapGet("/add", (IServerService serverService, Count count) =>
 {
-    _serverService.AddCounter(count.Counter);
+    serverService.AddCounter(count);
+    return count.Counter;
 });
 
-app.MapGet("/remove", (IServerService _serverService) =>
+app.MapGet("/remove", (IServerService serverService,  Count count) =>
 {
-    _serverService.RemoveCounter(count.Counter);
+    serverService.RemoveCounter(count);
+    return count.Counter;
 });
 
 app.Run();

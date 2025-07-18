@@ -1,16 +1,18 @@
-﻿namespace Server.Service;
+﻿using Server.Domain;
+
+namespace Server.Service;
 
 public class ServerService : IServerService
 {
-    public int AddCounter(int counter)
+    public int AddCounter(Count count)
     {
-        counter++;
-        return counter;
+        count.Counter++;
+        return count.Counter;
     }
 
-    public int RemoveCounter(int counter)
+    public int RemoveCounter(Count count)
     {
-        counter--;
-        return counter;
+        count.Counter--;
+        return count.Counter;
     }
 }
